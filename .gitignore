@@ -1,6 +1,4 @@
 .idea/*
-*.png
-*.jpeg
-*.jpg
 .DS_Store
 .ipynb*
+baconnet/generated_data/*
