@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <label class="btn btn-primary btn-lg btn-block" for="my-file-selector">
                     <input id="my-file-selector" type="file" style="display:none;" accept="image/jpeg" name="uploaded-image">
-                    Upload Image
+                    Upload JPEG Image
                 </label>
             </div>
             <div class="col-md-4"></div>
@@ -46,6 +46,21 @@
                 <label id="submit-button" class="btn btn-default btn-lg btn-block disabled">
                     Submit Image
                 </label>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div id="error-row" class="row hide">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="bs-component">
+                <div class="alert alert-dismissible alert-danger center-text">
+                    <button type="button" class="close"></button>
+                    <strong>Too much bacon!</strong>
+                    <br>
+                    Sorry, but that file is too big. Try submitting a file less than 2 MB.
+                </div>
+                </div>
             </div>
             <div class="col-md-4"></div>
         </div>
@@ -62,7 +77,7 @@
             <div class="row">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                    <p class="center-text footer">Brought to you by Adrian Lange</p>
+                    <p class="center-text footer">Brought to you by <a href="http://adrianlange.com">Adrian Lange</a></p>
                 </div>
                 <div class="col-lg-4"></div>
             </div>
