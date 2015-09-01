@@ -112,7 +112,7 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
 # more functions to better separate the code, but it wouldn't make it any
 # easier to read.
 
-def main(num_epochs=3, read_params=False):
+def main(num_epochs=3, read_params=False, read_filename="model_baconnet_color.npz"):
     # Load the dataset
     print("Loading data...")
     X_train, y_train, X_val, y_val, X_test, y_test = load_dataset()
@@ -137,8 +137,8 @@ def main(num_epochs=3, read_params=False):
 
     # Read parameters from previous fit if requested
     if read_params:
-        print("Loading parameters from previous run...")
-        loaded_params = np.load('model.npz')
+        print("Loading parameters from previous run from file: {}".format(read_filename))
+        loaded_params = np.load(read_filename)
         lasagne.layers.set_all_param_values(network, loaded_params['arr_0'])
 
     # Create update expressions for training, i.e., how to modify the
@@ -147,7 +147,7 @@ def main(num_epochs=3, read_params=False):
     params = lasagne.layers.get_all_params(network, trainable=True)
     # updates = lasagne.updates.nesterov_momentum(
     #         loss, params, learning_rate=0.01, momentum=0.9)
-    updates = lasagne.updates.rmsprop(loss, params, learning_rate=0.001)
+    updates = lasagne.updates.rmsprop(loss, params, learning_rate=0.0001, rho=0.5)
     # updates = lasagne.updates.sgd(loss, params, learning_rate=0.0001)
 
     # Create a loss expression for validation/testing. The crucial difference
@@ -170,7 +170,7 @@ def main(num_epochs=3, read_params=False):
     # Finally, launch the training loop.
     print("Starting training...")
 
-    batchsize = 100
+    batchsize = 200
 
     # We iterate over epochs:
     for epoch in range(num_epochs):
@@ -206,9 +206,9 @@ def main(num_epochs=3, read_params=False):
         print("  validation accuracy:\t\t{:.2f} %".format(
             val_acc / val_batches * 100))
 
-        # Checkpoint save every 10 epochs
-        if epoch > 0 and epoch % 10 == 0:
-            np.savez('model_baconnet_' + str(epoch) + '.npz', lasagne.layers.get_all_param_values(network))
+        # Checkpoint save every 2 epochs
+        if epoch % 2 == 0:
+            np.savez('epoch_baconnet_color' + str(epoch) + '.npz', lasagne.layers.get_all_param_values(network))
 
     # After training, we compute and print the test error:
     test_err = 0
@@ -227,7 +227,7 @@ def main(num_epochs=3, read_params=False):
 
 
     # Optionally, you could now dump the network weights to a file like this:
-    np.savez('model.npz', lasagne.layers.get_all_param_values(network))
+    np.savez('model_baconnet_color.npz', lasagne.layers.get_all_param_values(network))
 
 
 if __name__ == '__main__':
@@ -241,4 +241,6 @@ if __name__ == '__main__':
             kwargs['num_epochs'] = int(sys.argv[1])
         if len(sys.argv) > 2:
             kwargs['read_params'] = sys.argv[2] == "True"
+        if len(sys.argv) > 3:
+            kwargs['read_filename'] = sys.argv[3]
         main(**kwargs)

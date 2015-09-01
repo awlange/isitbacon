@@ -19,3 +19,7 @@ def hello_world():
     :return: a simple message to show it works
     """
     return 'Hello World! I am the BaconNet service.'
+
+
+if __name__ == '__main__':
+    app.run(port=8001, debug=True)

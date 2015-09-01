@@ -42,9 +42,9 @@ def load_dataset():
     X_val = X_val.astype(np.float64)
     X_test = X_test.astype(np.float64)
 
-    y_train = np.fromfile("generated_data64/y_train.dat", dtype=np.uint8)
-    y_val = np.fromfile("generated_data64/y_val.dat", dtype=np.uint8)
-    y_test = np.fromfile("generated_data64/y_test.dat", dtype=np.uint8)
+    y_train = np.fromfile("generated_data/y_train.dat", dtype=np.uint8)
+    y_val = np.fromfile("generated_data/y_val.dat", dtype=np.uint8)
+    y_test = np.fromfile("generated_data/y_test.dat", dtype=np.uint8)
 
     return X_train, y_train, X_val, y_val, X_test, y_test
 

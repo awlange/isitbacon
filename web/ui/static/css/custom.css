@@ -1,0 +1,28 @@
+html,
+body {
+  height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.jumbotron {
+    height: 300px;
+    background-image: url(../img/bacon_background_dark.jpg);
+    background-repeat: no-repeat;
+    color: white;
+}
