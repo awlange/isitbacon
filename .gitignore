@@ -2,3 +2,4 @@
 .DS_Store
 .ipynb*
 baconnet/generated_data/*
+baconnet/generated_data64/*
