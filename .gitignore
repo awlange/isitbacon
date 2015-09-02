@@ -6,3 +6,4 @@ baconnet/generated_data64/*
 baconnet/checkpoints
 __pycache__
 web/ui/tmp.jpg
+epoch*npz

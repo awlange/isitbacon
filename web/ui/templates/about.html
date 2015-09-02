@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="BaconNet">
+    <meta name="author" content="Adrian Lange">
+
+    <title>BaconNet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div id="wrap">
+        <div class="jumbotron center-text">
+          <div class="container">
+            <h1>BaconNet</h1>
+            <br>
+            <p>State-of-the-art bacon detection technology</p>
+          </div>
+        </div>
+
+        <div id="about-row" class="row" style="margin: 30px 0px">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h2 class="center-text">About BaconNet</h2>
+                <p>BaconNet is a deep convolution neural network trained to recognize bacon, Kevin Bacon,
+                    and things that are not bacon. The aim of BaconNet is not so much to make the best model for
+                    detecting these categories, but it is more a display of building a model from scratch and
+                    turning it into a product. BaconNet was built as follows:
+                </p>
+                <ul>
+                    <li>Gather images from Google: 100 bacon images, 100 Kevin Bacon images, 200 semi-random images</li>
+                    <li>Transform original images into 64x64 pixel thumbnails (ignoring/allowing skewing)</li>
+                    <li>Generate more data by vertical reflection and single pixel translations in ech cardinal direction,
+                        amounting to 10x as much data as original (4000 images)</li>
+                    <li>Split data by 80:10:10 of train:validation:test</li>
+                    <li>Using Lasagne, build and train network with architecture:
+                        <ol>
+                            <li>Input layer (3 RGB channels, 64x64 pixels)</li>
+                            <li>Convolution Layer: 32 16x16 pixel filters, ReLU</li>
+                            <li>Max Pool Layer: 2x2 pool</li>
+                            <li>Convolution Layer: 32 4x4 node filters, ReLU</li>
+                            <li>Max Pool Layer: 2x2 pool</li>
+                            <li>Fully Connected Layer: 512 nodes, sigmoid logistic units, 0.2 dropout</li>
+                            <li>SoftMax Layer: 3 nodes</li>
+                        </ol>
+                    </li>
+                    <li>Training run with combination of stochastic gradient descent followed by RMSprop</li>
+                    <li>Resulting accuracy of ~85% on test data (not great, so don't be surprised by misclassification!)</li>
+                    <li>Web app built with Flask and stuff</li>
+                </ul>
+                <br>
+                <p class="center-text"><a href="https://github.com/awlange/isitbacon">View source on GitHub</a></p>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <p class="center-text footer">Brought to you by <a href="http://adrianlange.com">Adrian Lange</a></p>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/d3.min.js"></script>
+    <script src="/static/js/nv.d3.js"></script>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>

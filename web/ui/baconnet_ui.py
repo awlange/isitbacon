@@ -39,6 +39,13 @@ def root():
     """
     return render_template('layout.html')
 
+@app.route('/about')
+def about():
+    """
+    about BaconNet page
+    """
+    return render_template('about.html')
+
 @app.route('/submit', methods=["POST"])
 def submit():
     """
