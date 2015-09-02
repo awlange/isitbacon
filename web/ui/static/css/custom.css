@@ -42,3 +42,14 @@ body {
 .hide {
     display: none;
 }
+
+#chart {
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+svg {
+    height: 300px;
+}

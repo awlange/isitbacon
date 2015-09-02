@@ -68,17 +68,18 @@
         <div id="spinner-row" class="row hide">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <img src="static/img/spinner.gif" class="image-style" id="spinner">
+                <img src="/static/img/spinner.gif" class="image-style" id="spinner">
             </div>
             <div class="col-md-3"></div>
         </div>
 
         <div id="data-row" class="row hide">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <p id="data" class="center-text">Put data here</p>
+            <div class="col-lg-12">
+                <p id="data-message" class="center-text">Put data here</p>
+                <div id="chart">
+                  <svg> </svg>
+                </div>
             </div>
-            <div class="col-md-3"></div>
         </div>
 
         <div class="row">
@@ -106,6 +107,8 @@
 {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/d3.min.js"></script>
+    <script src="/static/js/nv.d3.js"></script>
     <script src="/static/js/main.js"></script>
   </body>
 </html>

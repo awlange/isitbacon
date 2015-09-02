@@ -53,10 +53,34 @@ def submit():
 
     # Send image to service for prediction
     result = baconnet.predict(request.data)
+    result = get_message(result)
 
     return Response(json.dumps(result), status=200, mimetype='application/json')
 
 
+def get_message(result):
+    """
+    Add a fun message about the predicted data
+    """
+    p_list = [result.get("not"), result.get("bacon"), result.get("kevin")]
+    p_max = 0.0
+    p_index = 0
+    for i, p in enumerate(p_list):
+        if p > p_max:
+            p_max = p
+            p_index = i
+
+    message = None
+    if p_index == 0:
+        message = "Seems like that's not bacon."
+    elif p_index == 1:
+        message = "Hey, now that looks like bacon!"
+    elif p_index == 2:
+        message = "Yep. Looks like Kevin Bacon, alright."
+
+    result["message"] = message
+
+    return result
 
 
 if __name__ == '__main__':

@@ -82,7 +82,7 @@ $(document).ready(function() {
             if (this.status == 200) {
                 console.log(this.responseText);
                 data = JSON.parse(this.responseText);
-                setTimeout(function(){ displayData(data); }, 800);  // wait a little for dramatic effect ;)
+                setTimeout(function(){ displayData(data); }, 300);  // wait a little for dramatic effect ;)
             }
         };
         xhr.send(file);
@@ -97,8 +97,56 @@ function displayData(data) {
         spinner.addClass("hide");
     }
 
+    renderGraph(data);
+
+    var message = $("#data-message");
+    message.text(data["message"]);
+
     var dataRow = $("#data-row");
     if (dataRow.hasClass("hide")) {
         dataRow.removeClass("hide");
     }
+}
+
+function renderGraph(data) {
+    nv.addGraph(function() {
+      var chart = nv.models.discreteBarChart()
+          .x(function(d) { return d.label })    //Specify the data accessors.
+          .y(function(d) { return d.value })
+          //.staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+          .tooltips(false)        //Don't show tooltips
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+          .duration(800)
+          ;
+
+      d3.select('#chart svg')
+          .datum(transformData(data))
+          .call(chart);
+
+      nv.utils.windowResize(chart.update);
+
+      return chart;
+    });
+}
+
+function transformData(data) {
+    return  [
+    {
+      key: "BaconNet Prediction",
+      values: [
+        {
+          "label" : "Not Bacon" ,
+          "value" : data["not"]
+        } ,
+        {
+          "label" : "Bacon" ,
+          "value" : data["bacon"]
+        } ,
+        {
+          "label" : "Kevin Bacon" ,
+          "value" : data["kevin"]
+        }
+      ]
+    }
+  ]
 }
