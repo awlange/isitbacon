@@ -1,3 +1,5 @@
+var _URL = window.URL || window.webkitURL;
+
 $(document).ready(function() {
 
     var fileSizeLimit = 1024 * 1024 * 2;  // 2 MB limit
@@ -80,7 +82,7 @@ $(document).ready(function() {
             if (this.status == 200) {
                 console.log(this.responseText);
                 data = JSON.parse(this.responseText);
-                setTimeout(function(){ displayData(data); }, 800);  // wait a little for dramatic effect :)
+                setTimeout(function(){ displayData(data); }, 800);  // wait a little for dramatic effect ;)
             }
         };
         xhr.send(file);

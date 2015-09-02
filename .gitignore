@@ -3,3 +3,5 @@
 .ipynb*
 baconnet/generated_data/*
 baconnet/generated_data64/*
+baconnet/checkpoints
+__pycache__
