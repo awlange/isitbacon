@@ -21,14 +21,28 @@ BACONNET_SERVICE_BASE_URL = 'http://localhost:8001'
 @app.route('/hello')
 def hello_world():
     """
-    :return: a simple message to show it works
+    a simple message to show it works
     """
     return 'Hello World! I am the BaconNet UI.'
 
 
 @app.route('/')
 def root():
+    """
+    the main page
+    """
     return render_template('layout.html')
+
+@app.route('/submit', methods=["POST"])
+def submit():
+    """
+    image submission endpoint
+    """
+    if request.headers['Content-Type'] != 'image/jpeg':
+        return RESPONSE_INVALID_CONTENT_TYPE
+
+    result = {"not": 0.0, "bacon": 0.0, "kevin": 0.0}
+    return Response(json.dumps(result), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

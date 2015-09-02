@@ -32,8 +32,8 @@
         <div id="upload-row" class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <label class="btn btn-primary btn-lg btn-block" for="my-file-selector">
-                    <input id="my-file-selector" type="file" style="display:none;" accept="image/jpeg" name="uploaded-image">
+                <label id="upload-button" class="btn btn-primary btn-lg btn-block" for="upload-input">
+                    <input id="upload-input" type="file" style="display:none;" accept="image/jpeg" name="uploaded-image">
                     Upload JPEG Image
                 </label>
             </div>
@@ -63,6 +63,14 @@
                 </div>
             </div>
             <div class="col-md-4"></div>
+        </div>
+
+        <div id="data-row" class="row hide">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p id="data">Put data here</p>
+            </div>
+            <div class="col-md-3"></div>
         </div>
 
         <div class="row">
