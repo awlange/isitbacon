@@ -147,7 +147,7 @@ def main(num_epochs=3, read_params=False, read_filename="model_baconnet_color.np
     params = lasagne.layers.get_all_params(network, trainable=True)
     # updates = lasagne.updates.nesterov_momentum(
     #         loss, params, learning_rate=0.01, momentum=0.9)
-    updates = lasagne.updates.rmsprop(loss, params, learning_rate=0.0001, rho=0.5)
+    updates = lasagne.updates.rmsprop(loss, params, learning_rate=0.0005, rho=0.9)
     # updates = lasagne.updates.sgd(loss, params, learning_rate=0.0001)
 
     # Create a loss expression for validation/testing. The crucial difference
@@ -206,8 +206,8 @@ def main(num_epochs=3, read_params=False, read_filename="model_baconnet_color.np
         print("  validation accuracy:\t\t{:.2f} %".format(
             val_acc / val_batches * 100))
 
-        # Checkpoint save every 2 epochs
-        if epoch % 2 == 0:
+        # Checkpoint save every epoch
+        if epoch % 1 == 0:
             np.savez('epoch_baconnet_color' + str(epoch) + '.npz', lasagne.layers.get_all_param_values(network))
 
     # After training, we compute and print the test error:
