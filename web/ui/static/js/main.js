@@ -17,7 +17,7 @@ $(document).ready(function() {
             if (!dataRow.hasClass("hide")) {
                 dataRow.addClass("hide");
             }
-            
+
             if (file.size < fileSizeLimit) {
                 // Only allow if file is less than 2 MB
 
@@ -64,18 +64,23 @@ $(document).ready(function() {
             return;
         }
 
-        // TODO: Add spinner
+        // Add spinner
+        var spinner = $("#spinner-row");
+        if (spinner.hasClass("hide")) {
+            spinner.removeClass("hide");
+        }
 
         // AJAX post of the image
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/submit", true);
         xhr.setRequestHeader("Content-Type", "image/jpeg");
         xhr.setRequestHeader("X_FILENAME", file.name);
+        xhr.setRequestHeader("X_foobar", "supersecret");
         xhr.onload = function() {
             if (this.status == 200) {
                 console.log(this.responseText);
                 data = JSON.parse(this.responseText);
-                displayData(data);
+                setTimeout(function(){ displayData(data); }, 800);  // wait a little for dramatic effect :)
             }
         };
         xhr.send(file);
@@ -84,6 +89,11 @@ $(document).ready(function() {
 
 function displayData(data) {
     // Display BaconNet results
+
+    var spinner = $("#spinner-row");
+    if (!spinner.hasClass("hide")) {
+        spinner.addClass("hide");
+    }
 
     var dataRow = $("#data-row");
     if (dataRow.hasClass("hide")) {

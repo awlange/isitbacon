@@ -27,7 +27,7 @@ body {
     color: white;
 }
 
-#image-display {
+.image-style {
     display: block;
     margin-left: auto;
     margin-right: auto;

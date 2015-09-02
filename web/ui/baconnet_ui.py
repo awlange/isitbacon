@@ -38,6 +38,8 @@ def submit():
     """
     image submission endpoint
     """
+    if request.headers['X_foobar'] != 'supersecret':
+        return RESPONSE_INVALID_URL
     if request.headers['Content-Type'] != 'image/jpeg':
         return RESPONSE_INVALID_CONTENT_TYPE
 
